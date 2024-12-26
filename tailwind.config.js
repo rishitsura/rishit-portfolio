@@ -41,7 +41,10 @@ export default {
             filter: 'blur(0px)'
           }
         }
-      }
+      },
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
+      },
     },
   },
   plugins: [],

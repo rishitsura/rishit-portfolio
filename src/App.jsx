@@ -56,7 +56,7 @@ const Timeline = () => {
 
   return (
     <div className="max-w-4xl mx-auto my-24 relative px-6 z-0">
-      <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+      <h2 className="text-4xl font-serif font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
         My Journey
       </h2>
       
@@ -74,7 +74,7 @@ const Timeline = () => {
                               transition-transform duration-300 hover:scale-105 hover:bg-gray-700/80 
                               border border-blue-500/20 hover:border-blue-500/40">
                 <div className="text-blue-400 font-mono mb-2">{item.year}</div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{item.event}</h3>
+                <h3 className="text-xl font-serif font-semibold mb-2 text-white">{item.event}</h3>
                 <p className="text-gray-300 text-sm">{item.description}</p>
               </div>
             </div>
@@ -184,7 +184,7 @@ const Portfolio = () => {
       {/* Header */}
       <header className="fixed top-0 w-full bg-opacity-90 bg-gray-900 backdrop-blur-sm z-40">
         <nav className="max-w-6xl mx-auto py-4 px-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-serif font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
             Rishit Sura
           </h1>
           <div className="flex gap-4">
@@ -211,7 +211,7 @@ const Portfolio = () => {
           className="text-center"
           style={{ transform: `translateY(${scrollY * 0.3}px)` }}
         >
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-serif font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
             Tech Enthusiast & Developer
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -230,7 +230,7 @@ const Portfolio = () => {
           className="max-w-6xl mx-auto space-y-16"
           style={{ transform: `translateY(${(scrollY - 800) * 0.1}px)` }}
         >
-          <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-serif font-bold text-center bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -253,11 +253,11 @@ const Portfolio = () => {
           className="max-w-6xl mx-auto"
           style={{ transform: `translateY(${(scrollY - 1600) * 0.1}px)` }}
         >
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-serif font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
             Experience
           </h2>
           <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-8 shadow-xl border border-blue-500/20">
-            <h3 className="text-xl font-semibold">Data Science Intern</h3>
+            <h3 className="text-xl font-serif font-semibold">Data Science Intern</h3>
             <p className="text-blue-400">IBM SkillsBuild and CSRBOX</p>
             <p className="text-gray-300 mt-4">
               Analyzed complex datasets using R, creating visualizations that increased actionable insights by 30% 

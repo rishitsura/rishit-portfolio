@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Github } from 'lucide-react';
 
 const ProjectCard = ({ project }) => {
   return (
-    // Added hover tilt and relative container
     <div 
       className="group relative w-full min-h-[320px] overflow-hidden 
                  transition-transform duration-500 
@@ -11,7 +10,6 @@ const ProjectCard = ({ project }) => {
                  perspective" 
       style={{ transformStyle: 'preserve-3d' }}
     >
-      {/* Main card content */}
       <div 
         className="absolute inset-0 p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl 
                    border border-blue-500/10 hover:border-blue-500/30 
@@ -57,16 +55,18 @@ const ProjectCard = ({ project }) => {
           </div>
         </div>
 
-        {/* Show Source Code button slides up from bottom */}
         <a 
           href={project.repoLink} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-3rem] px-4 py-2 
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 px-4 py-2 
                      bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
-                     transition-all duration-500 group-hover:bottom-4"
+                     transition-all duration-500 opacity-0 translate-y-full
+                     group-hover:opacity-100 group-hover:translate-y-[-1rem]
+                     flex items-center gap-2 whitespace-nowrap"
         >
-          Show Source Code
+          <Github className="w-4 h-4" />
+          <span>Show Source Code</span>
         </a>
       </div>
     </div>
