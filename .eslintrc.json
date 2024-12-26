@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/no-unknown-property": ["error", { 
+      "ignore": [
+        "position",
+        "args",
+        "attach",
+        "metalness",
+        "roughness",
+        "intensity",
+        "rotation",
+        "geometry",
+        "material"
+      ] 
+    }]
+  }
+}
