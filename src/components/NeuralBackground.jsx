@@ -26,9 +26,9 @@ const NeuralBackground = () => {
     // Create nodes with optimized geometry
     const geometry = new THREE.SphereGeometry(0.1, 4, 4);
     const material = new THREE.MeshBasicMaterial({ 
-      color: 0x3b82f6,
+      color: 0xe94560,
       transparent: true,
-      opacity: 0.4
+      opacity: 0.15
     });
 
     for (let i = 0; i < nodeCount; i++) {
@@ -73,9 +73,9 @@ const NeuralBackground = () => {
         connections.current = [];
 
         const lineMaterial = new THREE.LineBasicMaterial({ 
-          color: 0x3b82f6,
+          color: 0xe94560,
           transparent: true,
-          opacity: 0.2
+          opacity: 0.1
         });
 
         nodes.current.forEach((node, i) => {

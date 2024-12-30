@@ -42,6 +42,13 @@ export default {
           }
         }
       },
+      colors: {
+        background: '#000000',
+        primary: '#e94560',
+        secondary: '#16161d',
+        text: '#eaeaea',
+        link: '#e94560',
+      },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
       },

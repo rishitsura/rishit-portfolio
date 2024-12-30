@@ -49,8 +49,6 @@ h1, h2, h3 {
 }
 
 :root {
-  /* Remove or comment out this font-family line */
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -68,19 +66,19 @@ html {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #e94560;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #e94560;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #111827;
-  color: #ffffff;
+  background-color: #000000;
+  color: #eaeaea;
   overflow-x: hidden; /* Prevent horizontal scrolling from parallax */
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
@@ -100,7 +98,7 @@ button {
   cursor: pointer;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #e94560;
 }
 button:focus,
 button:focus-visible {
@@ -114,7 +112,7 @@ button:focus-visible {
 
 .timeline-item::before {
   content: '';
-  @apply absolute top-1/2 w-8 h-0.5 bg-blue-500/30;
+  @apply absolute top-1/2 w-8 h-0.5 bg-primary/30;
 }
 
 .timeline-item:nth-child(odd)::before {
@@ -137,15 +135,108 @@ button:focus-visible {
   backface-visibility: hidden;
 }
 
+@keyframes slideInRight {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes borderRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes borderOpacity {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.pill-navbar {
+  @apply flex items-center gap-8 px-6 py-2
+         rounded-full shadow-lg z-50
+         backdrop-blur-xl;
+  background: #000000;
+  border: 1px solid #e94560;
+  will-change: auto;
+}
+
+.pill-link {
+  @apply relative text-white font-medium transition-colors;
+}
+
+.pill-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary;
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.pill-link:hover::after {
+  animation: slideInRight 0.5s ease-in-out forwards;
+  width: 100%;
+  opacity: 1;
+}
+
+/* A new class for the glass background:
+   extends across full width, slightly taller than the pill navbar. */
+.navbar-bg {
+  @apply fixed top-0 w-full h-20 z-40 backdrop-blur-md;
+  background: transparent; /* Fully transparent */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #eaeaea;
+    background-color: #000000;
   }
   a:hover {
-    color: #747bff;
+    color: #e94560;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #e94560;
   }
 }

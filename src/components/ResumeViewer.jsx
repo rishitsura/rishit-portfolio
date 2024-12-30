@@ -1,5 +1,6 @@
 import { X, Download } from 'lucide-react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ResumeViewer = ({ onClose }) => {
   const resumePath = '/Rishit_Sura_Resume.pdf';
@@ -37,8 +38,10 @@ const ResumeViewer = ({ onClose }) => {
             <a
               href={resumePath}
               download="Rishit_Sura_Resume.pdf"
-              className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 
-                       rounded-md transition-colors text-white text-sm group"
+              className="flex items-center gap-2 px-3 py-1.5 bg-primary hover:bg-black 
+                       text-black hover:text-primary rounded-md transition-all duration-300
+                       transform hover:scale-105 active:scale-95 text-sm group
+                       border border-transparent hover:border-primary"
             >
               <Download className="w-4 h-4 group-hover:scale-110 transition-transform" />
               <span>Download</span>
@@ -47,7 +50,7 @@ const ResumeViewer = ({ onClose }) => {
           <button
             onClick={onClose}
             className="p-2 text-white/80 hover:text-white hover:bg-white/10 
-                     rounded-lg transition-all hover:rotate-90 duration-300"
+                     rounded-lg transition-all duration-300 transform hover:rotate-90 active:scale-95"
           >
             <X className="w-5 h-5" />
           </button>
@@ -56,7 +59,7 @@ const ResumeViewer = ({ onClose }) => {
         {/* Loading indicator */}
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <div className="w-12 h-12 border-4 border-blue-600/30 border-t-blue-600 
+            <div className="w-12 h-12 border-4 border-primary/30 border-t-primary 
                           rounded-full animate-spin" />
           </div>
         )}
@@ -89,6 +92,10 @@ const ResumeViewer = ({ onClose }) => {
       `}</style>
     </div>
   );
+};
+
+ResumeViewer.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 export default ResumeViewer;

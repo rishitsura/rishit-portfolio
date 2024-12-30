@@ -11,20 +11,20 @@ const ProjectCard = ({ project }) => {
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div 
-        className="absolute inset-0 p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl 
-                   border border-blue-500/10 hover:border-blue-500/30 
-                   hover:shadow-xl hover:shadow-blue-500/5 
+        className="absolute inset-0 p-6 bg-secondary/50 backdrop-blur-sm rounded-xl 
+                   border border-primary/10 hover:border-primary/30 
+                   hover:shadow-xl hover:shadow-primary/5 
                    transition-all duration-300 overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 
                         opacity-0 group-hover:opacity-100 transition-opacity" />
         
         <div className="relative">
           <div className="flex items-center gap-4 mb-4">
-            <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
+            <div className="p-2 bg-primary/10 rounded-lg text-primary">
               {project.icon}
             </div>
-            <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
+            <h3 className="text-xl font-semibold text-text group-hover:text-primary transition-colors">
               {project.title}
             </h3>
           </div>
@@ -37,8 +37,8 @@ const ProjectCard = ({ project }) => {
             {project.tech.map((tech, i) => (
               <span 
                 key={i} 
-                className="px-3 py-1 text-xs bg-blue-500/10 text-blue-400 rounded-full
-                  border border-blue-500/20"
+                className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full
+                  border border-primary/20"
               >
                 {tech}
               </span>
@@ -47,7 +47,7 @@ const ProjectCard = ({ project }) => {
 
           <div className="space-y-2">
             {project.metrics.map((metric, i) => (
-              <div key={i} className="flex items-center gap-2 text-green-400/80 text-sm">
+              <div key={i} className="flex items-center gap-2 text-text/80 text-sm">
                 <ChevronRight className="w-4 h-4" />
                 <span>{metric}</span>
               </div>
@@ -60,10 +60,11 @@ const ProjectCard = ({ project }) => {
           target="_blank" 
           rel="noopener noreferrer"
           className="absolute left-1/2 -translate-x-1/2 bottom-0 px-4 py-2 
-                     bg-blue-600 hover:bg-blue-700 text-white rounded-lg 
+                     bg-primary hover:bg-black text-black hover:text-primary rounded-lg 
                      transition-all duration-500 opacity-0 translate-y-full
                      group-hover:opacity-100 group-hover:translate-y-[-1rem]
-                     flex items-center gap-2 whitespace-nowrap"
+                     flex items-center gap-2 whitespace-nowrap
+                     border border-transparent hover:border-primary"
         >
           <Github className="w-4 h-4" />
           <span>Show Source Code</span>

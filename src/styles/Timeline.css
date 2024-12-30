@@ -8,3 +8,17 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+@keyframes gradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}
+
+.animate-gradient {
+  background-size: 300% auto;
+  animation: gradient 6s linear infinite;
+}
