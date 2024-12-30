@@ -321,9 +321,9 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Improved progress bar with enhanced gradient */}
+      {/* Progress bar with red, yellow, blue gradient */}
       <div 
-        className="fixed top-0 left-0 h-2 bg-gradient-to-r from-red-500 via-blue-500 via-yellow-400 to-red-500 shadow-lg transition-transform duration-75 z-50"
+        className="fixed top-0 left-0 h-2 bg-gradient-to-r from-pink-500 via-yellow-400 via-blue-500 via-violet-600 to-pink-500 shadow-lg transition-transform duration-75 z-50"
         style={{ width: `${scrollProgress}%` }}
       />
 
@@ -342,7 +342,7 @@ const Portfolio = () => {
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
           <div className="flex gap-6 justify-center"> {/* Increased gap from gap-4 */}
-            <Award className="w-10 h-10 text-primary animate-bounce" /> {/* Increased from w-8 h-8 */}
+            <Award className="w-10 h-10 text-yellow-400 animate-bounce" /> {/* Increased from w-8 h-8 */}
             <p className="text-xl text-text">Top 2.4% among 13,000+ participants in SIH&apos;24</p> {/* Increased from text-lg */}
           </div>
         </div>
