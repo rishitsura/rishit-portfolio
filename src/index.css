@@ -105,6 +105,71 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Override all textarea behaviors - update existing textarea styles */
+textarea {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  resize: none !important;
+  outline: none !important;
+  border-bottom-right-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+textarea:focus,
+input:focus {
+  /* Remove default focus ring */
+  outline: none !important;
+  /* Remove any default focus styles */
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  /* Override all textarea behaviors */
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* Target WebKit browsers specifically */
+textarea::-webkit-resizer,
+textarea::-webkit-scrollbar-corner {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Add these new specific overrides */
+textarea::-webkit-scrollbar,
+textarea::-webkit-scrollbar-corner,
+textarea::-webkit-resizer,
+textarea::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+textarea::after,
+textarea::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Additional specific browser overrides */
+@-moz-document url-prefix() {
+  textarea {
+    overflow: hidden !important;
+  }
+}
+
+/* Override WebKit's resizer */
+textarea::-webkit-resizer {
+  display: none !important;
+}
+
 .timeline-item {
   will-change: transform, opacity;
   transform-origin: center left;
@@ -194,10 +259,24 @@ button:focus-visible {
 .pill-navbar {
   @apply flex items-center gap-8 px-6 py-2
          rounded-full shadow-lg z-50
-         backdrop-blur-xl;
+         backdrop-blur-xl transform transition-transform duration-300;
   background: #000000;
   border: 1px solid #e94560;
-  will-change: auto;
+  will-change: transform;
+}
+
+.pill-navbar:hover {
+  transform: scale(1.02);
+}
+
+/* Updated navbar background container */
+.navbar-bg {
+  @apply fixed top-0 w-full h-24 z-40 backdrop-blur-md; /* Changed h-20 to h-24 */
+  background: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pill-link {

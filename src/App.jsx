@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Github, Linkedin, Mail, Code2, PenTool, BrainCircuit, Award, FileText } from 'lucide-react';
 import NeuralBackground from './components/NeuralBackground';
@@ -6,6 +6,7 @@ import ProjectCard from './components/ProjectCard';
 import ResumeViewer from './components/ResumeViewer';
 import { createPortal } from 'react-dom';
 import './styles/Timeline.css';
+import { TechCloud } from './components/TechCloud';
 
 const timelineItems = [
   {
@@ -173,16 +174,25 @@ const ContactMe = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-text/80 mb-2">
                     Your Message
                   </label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
-                    rows="4" 
-                    required 
-                    className="w-full px-4 py-3 rounded-lg bg-black/50 border border-primary/20 
-                            text-text placeholder-text/50 focus:border-primary
-                            transition-colors duration-300 resize-none"
-                    placeholder="Enter your message..." 
-                  />
+                  <div className="relative">
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      rows="4" 
+                      required 
+                      className="w-full px-4 py-3 rounded-lg border border-primary/20 
+                                text-text placeholder-text/50 focus:border-primary focus:outline-none
+                                transition-colors duration-300 resize-none appearance-none selection:bg-primary/20
+                                focus:ring-0 focus:shadow-none relative z-10"
+                      style={{ 
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        WebkitAppearance: 'none',
+                      }}
+                      placeholder="Enter your message..." 
+                    />
+                    {/* Add an absolute background layer */}
+                    <div className="absolute inset-0 bg-black/50 rounded-lg -z-0" />
+                  </div>
                 </div>
 
                 <button type="submit" 
@@ -296,6 +306,13 @@ const Portfolio = () => {
     }
   ];
 
+  // Add TechCloud section with proper isolation
+  const TechCloudSection = useMemo(() => (
+    <section className="relative isolate">
+      <TechCloud />
+    </section>
+  ), []);
+
   return (
     <div className="min-h-screen bg-black text-text">
       <header>
@@ -347,6 +364,9 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      {/* Tech Cloud Section - Now memoized */}
+      {TechCloudSection}
 
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6 relative">
