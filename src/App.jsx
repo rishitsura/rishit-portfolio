@@ -9,6 +9,8 @@ import {
   BrainCircuit,
   Award,
   FileText,
+  Home,
+  Clock,
 } from "lucide-react";
 import NeuralBackground from "./components/NeuralBackground";
 import ProjectCard from "./components/ProjectCard";
@@ -297,18 +299,49 @@ const ContactMe = () => {
   );
 };
 
+const MobileNavItem = ({ href, icon, label }) => (
+  <a
+    href={href}
+    className="flex flex-col items-center gap-1 text-text hover:text-primary transition-colors
+               px-1.5 py-1 rounded-full hover:bg-secondary/50"
+  >
+    {icon}
+    <span className="text-[10px] font-medium opacity-80">{label}</span>
+  </a>
+);
+
+const MobileNavigation = () => (
+  <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-secondary/70 backdrop-blur-xl 
+                  border border-red-500 px-4 py-2 md:hidden z-50 rounded-full">
+    <div className="flex justify-around items-center gap-4">
+      <MobileNavItem href="#home" icon={<Home className="w-4 h-4" />} label="Home" />
+      <MobileNavItem href="#projects" icon={<Code2 className="w-4 h-4" />} label="Projects" />
+      <MobileNavItem href="#timeline" icon={<Clock className="w-4 h-4" />} label="Journey" />
+      <MobileNavItem href="#contact" icon={<Mail className="w-4 h-4" />} label="Contact" />
+    </div>
+  </nav>
+);
+
 const FloatingResumeButton = memo(({ onClick }) =>
   createPortal(
     <button
       onClick={onClick}
-      className="fixed bottom-8 right-8 z-[9999] pointer-events-auto 
-                 bg-red-500 text-black px-6 py-3 
-                 rounded-lg shadow-lg flex items-center gap-2 border border-transparent 
-                 hover:border-red-500 backdrop-blur-sm transition-all duration-500 
-                 transform hover:scale-105 active:scale-95"
+      className={`
+        fixed z-[9999] pointer-events-auto backdrop-blur-sm transition-all duration-500 
+        transform hover:scale-105 active:scale-95 border bg-red-500 text-black
+        
+        md:bottom-8 md:right-8 md:px-5 md:py-2.5 md:text-base md:rounded-lg 
+        md:border-transparent md:hover:border-red-500
+        md:flex md:flex-row md:items-center md:gap-2
+        
+        bottom-[72px] right-0 px-2 py-2.5 text-xs
+        border-red-500/50 flex flex-col items-center justify-center gap-0.5
+        rounded-l-full rounded-r-none min-w-[44px]
+      `}
     >
-      <FileText className="w-5 h-5 animate-bounce" />
-      <span className="text-sm font-medium">View Resume</span>
+      <FileText className="w-4 h-4 md:w-6 md:h-6 animate-bounce" />
+      <span className="text-sm font-medium hidden md:inline">View Resume</span>
+      <span className="font-medium text-[10px] md:hidden inline">Resume</span>
     </button>,
     document.body
   )
@@ -390,25 +423,23 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-black text-text">
-      <header>
-        {/* Full-width glass background now centered */}
+      {/* Desktop Navigation */}
+      <header className="hidden md:block">
         <div className="navbar-bg">
           <nav className="pill-navbar">
-            <a href="#home" className="pill-link hover:text-primary">
-              Home
-            </a>
-            <a href="#projects" className="pill-link hover:text-primary">
-              Projects
-            </a>
-            <a href="#timeline" className="pill-link hover:text-primary">
-              Journey
-            </a>
-            <a href="#contact" className="pill-link hover:text-primary">
-              Contact
-            </a>
+            <a href="#home" className="pill-link hover:text-primary">Home</a>
+            <a href="#projects" className="pill-link hover:text-primary">Projects</a>
+            <a href="#timeline" className="pill-link hover:text-primary">Journey</a>
+            <a href="#contact" className="pill-link hover:text-primary">Contact</a>
           </nav>
         </div>
       </header>
+
+      {/* Mobile Navigation Blur Effect */}
+      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent pointer-events-none md:hidden z-40" />
+
+      {/* Mobile Navigation */}
+      <MobileNavigation />
 
       <FloatingResumeButton onClick={() => setShowResumeModal(true)} />
       <NeuralBackground />
@@ -432,18 +463,41 @@ const Portfolio = () => {
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-4 md:px-6 relative overflow-hidden"
       >
-        <div className="text-center space-y-12">
-          <p className="text-3xl text-text mb-2">
+        {/* Mobile-only hero section */}
+        <div className="md:hidden text-center space-y-6">
+          <div className="flex flex-col items-center">
+            <p className="text-xl text-text mb-1">Hey, I&apos;m</p>
+            <span className="text-7xl font-bold bg-gradient-to-r from-red-600 via-yellow-400 via-orange-500 via-red-500 to-red-600 bg-clip-text text-transparent bg-[size:200%_auto] animate-[flow_3s_linear_infinite]">
+              Rishit Sura
+            </span>
+          </div>
+          <h1 className="text-4xl font-serif font-bold mb-6 bg-primary bg-clip-text text-transparent">
+            Tech Enthusiast & Developer
+          </h1>
+          <p className="text-xl text-text mb-8">
+            SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
+          </p>
+          <div className="flex items-start gap-3">
+            <Award className="w-8 h-8 text-yellow-400 animate-bounce mt-1" />
+            <p className="text-lg text-text text-left flex-1">
+              Top 2.4% among 13,000+ participants in SIH&apos;24
+            </p>
+          </div>
+        </div>
+
+        {/* Desktop-only hero section */}
+        <div className="hidden md:block text-center space-y-12">
+          <p className="text-2xl md:text-3xl text-text mb-2">
             {" "}
             {/* Increased from text-2xl, reduced top margin */}
             Hey, I&apos;m{" "}
-            <span className="text-8xl font-bold bg-gradient-to-r from-red-600 via-yellow-400 via-orange-500 via-red-500 to-red-600 bg-clip-text text-transparent bg-[size:200%_auto] animate-[flow_3s_linear_infinite]">
+            <span className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-red-600 via-yellow-400 via-orange-500 via-red-500 to-red-600 bg-clip-text text-transparent bg-[size:200%_auto] animate-[flow_3s_linear_infinite]">
               Rishit Sura
             </span>
           </p>
-          <h1 className="text-5xl font-serif font-bold mb-8 bg-primary bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 md:mb-8 bg-primary bg-clip-text text-transparent">
             {" "}
             {/* Increased from text-4xl */}
             Tech Enthusiast & Developer
@@ -467,7 +521,7 @@ const Portfolio = () => {
       </section>
 
       {/* About Me Section */}
-      <section className="py-20 px-6 relative">
+      <section className="py-16 md:py-20 px-4 md:px-6 relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Text Content */}
