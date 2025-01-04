@@ -28,16 +28,16 @@ const cloudProps = {
     outlineColour: "#0000",
     maxSpeed: 0.04,
     minSpeed: 0.02,
-    freezeActive: true, // Prevents flickering when interacting
-    freezeDecel: false, // Allows smooth deceleration
-    noSelect: true, // Prevents text selection while dragging
+    freezeActive: true, 
+    freezeDecel: false, 
+    noSelect: true, 
     noMouse: false,
   },
 };
 
 const renderCustomIcon = (icon) => {
-  const bgHex = "#000000"; // black background
-  const fallbackHex = "#ffffff"; // white fallback
+  const bgHex = "#000000"; 
+  const fallbackHex = "#ffffff"; 
   
   return renderSimpleIcon({
     icon,
@@ -60,23 +60,26 @@ const TechCloudBase = () => {
   
   const iconSlugs = useMemo(() => [
     "python",
-    "cplusplus", // C++
+    "cplusplus", 
     "c",
     "javascript",
     "r",
-    "mysql", // SQL
-    "html5", // HTML
-    "css3", // CSS
+    "mysql", 
+    "html5", 
+    "css3", 
     "react",
     "bootstrap",
-    "nodejs",
+    "tailwindcss",
+    "nodedotjs", 
     "mongodb",
     "sqlite",
+    "vercel",
     "git",
     "github",
-    "visualstudiocode", // VS Code
+    "visualstudiocode", 
     "googlecolab",
-    "powerbi",
+    "mspowerbi",
+    "figma",
     "canva"
   ], []);
 
