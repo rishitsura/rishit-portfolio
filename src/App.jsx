@@ -617,7 +617,7 @@ const Portfolio = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="h-[80px] flex items-center justify-center">
               <p className="text-text/70 text-sm">
-                © 2024 Built with ❤️ by{" "}
+                © 2025 Built with ❤️ by{" "}
                 <span className="relative inline-block">
                   <span className="relative inline-block text-text hover:text-primary transition-colors duration-300">
                     Rishit Sura
