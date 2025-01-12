@@ -310,6 +310,12 @@ const MobileNavItem = ({ href, icon, label }) => (
   </a>
 );
 
+MobileNavItem.propTypes = {
+  href: PropTypes.string,
+  icon: PropTypes.string,
+  label: PropTypes.string
+};
+
 const MobileNavigation = () => (
   <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-secondary/70 backdrop-blur-xl 
                   border border-red-500 px-4 py-2 md:hidden z-50 rounded-full">
