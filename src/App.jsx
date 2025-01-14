@@ -12,7 +12,6 @@ import {
   Home,
   Clock,
 } from "lucide-react";
-import NeuralBackground from "./components/NeuralBackground";
 import ProjectCard from "./components/ProjectCard";
 import ResumeViewer from "./components/ResumeViewer";
 import { createPortal } from "react-dom";
@@ -448,7 +447,6 @@ const Portfolio = () => {
       <MobileNavigation />
 
       <FloatingResumeButton onClick={() => setShowResumeModal(true)} />
-      <NeuralBackground />
 
       {/* Interactive background effect */}
       <div

@@ -61,7 +61,6 @@ const TechCloudBase = () => {
   const iconSlugs = useMemo(() => [
     "python",
     "cplusplus", 
-    "c",
     "javascript",
     "r",
     "mysql", 
