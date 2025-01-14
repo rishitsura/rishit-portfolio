@@ -75,9 +75,10 @@ const TechCloudBase = () => {
     "vercel",
     "git",
     "github",
+    "notion",
     "visualstudiocode", 
     "googlecolab",
-    "mspowerbi",
+    "powerbi",
     "figma",
     "canva"
   ], []);
