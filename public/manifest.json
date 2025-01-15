@@ -1,0 +1,15 @@
+{
+  "name": "Rishit Sura Portfolio",
+  "short_name": "Rishit Sura",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
