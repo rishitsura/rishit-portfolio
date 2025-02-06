@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const ResumeViewer = ({ onClose }) => {
-  const resumePath = '/Rishit_Sura_Resume.pdf';
+  const resumePath = '/Sura Rishit_Resume.pdf';
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -74,7 +74,7 @@ const ResumeViewer = ({ onClose }) => {
         />
       </div>
 
-      <style jsx global>{`
+      <style>{`
         @keyframes overlayShow {
           from { background-color: rgba(0, 0, 0, 0); backdrop-filter: blur(0px); }
           to { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); }
