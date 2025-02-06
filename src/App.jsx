@@ -486,7 +486,7 @@ const Portfolio = () => {
           <div className="w-full text-center">
             {/* Changed to a single inline element */}
             <p className="inline-flex items-center text-lg text-text">
-              <Award className="w-7 h-7 text-yellow-400 animate-bounce inline-block align-middle" />
+              <Award className="w-8 h-8 text-yellow-400 animate-bounce pr-0" />
               {/* No extra whitespace or margin */}
               Top 2.4% among 13,000+ participants in SIH&apos;24
             </p>
