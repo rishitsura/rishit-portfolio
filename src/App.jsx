@@ -483,13 +483,13 @@ const Portfolio = () => {
           <p className="text-xl text-text mb-8">
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
-          <div className="flex items-center justify-center text-center w-full">
-            <div className="inline-flex items-center justify-center">
-              <Award className="w-8 h-8 text-yellow-400 animate-bounce shrink-0" />
-              <span className="text-lg text-text ml-2">
-                Top 2.4% among 13,000+ participants in SIH&apos;24
-              </span>
-            </div>
+          <div className="w-full text-center">
+            {/* Changed to a single inline element */}
+            <p className="inline-flex items-center text-lg text-text">
+              <Award className="w-7 h-7 text-yellow-400 animate-bounce inline-block align-middle" />
+              {/* No extra whitespace or margin */}
+              Top 2.4% among 13,000+ participants in SIH&apos;24
+            </p>
           </div>
         </div>
 
@@ -513,9 +513,7 @@ const Portfolio = () => {
             {/* Increased from text-xl and max-w-2xl */}
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
-          <div className="flex gap-6 justify-center">
-            {" "}
-            {/* Increased gap from gap-4 */}
+          <div className="flex items-center justify-center gap-8">
             <Award className="w-10 h-10 text-yellow-400 animate-bounce" />{" "}
             {/* Increased from w-8 h-8 */}
             <p className="text-xl text-text">
