@@ -344,7 +344,7 @@ const FloatingResumeButton = memo(({ onClick }) =>
         rounded-l-full rounded-r-none min-w-[44px]
       `}
     >
-      <FileText className="w-4 h-4 md:w-6 md:h-6 animate-bounce" />
+      <FileText className="w-5 h-5 md:w-6 md:h-6 animate-bounce" />
       <span className="text-sm font-medium hidden md:inline">View Resume</span>
       <span className="font-medium text-[10px] md:hidden inline">Resume</span>
     </button>,
@@ -416,7 +416,7 @@ const Portfolio = () => {
     },
   ];
 
-  // Add TechCloud section with proper isolation
+  // TechCloud section with proper isolation
   const TechCloudSection = useMemo(
     () => (
       <section className="relative isolate">
@@ -483,11 +483,13 @@ const Portfolio = () => {
           <p className="text-xl text-text mb-8">
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
-          <div className="flex items-start gap-3">
-            <Award className="w-8 h-8 text-yellow-400 animate-bounce mt-1" />
-            <p className="text-lg text-text text-left flex-1">
-              Top 2.4% among 13,000+ participants in SIH&apos;24
-            </p>
+          <div className="flex items-center justify-center text-center w-full">
+            <div className="inline-flex items-center justify-center">
+              <Award className="w-8 h-8 text-yellow-400 animate-bounce shrink-0" />
+              <span className="text-lg text-text ml-2">
+                Top 2.4% among 13,000+ participants in SIH&apos;24
+              </span>
+            </div>
           </div>
         </div>
 
