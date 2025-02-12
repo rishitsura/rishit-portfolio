@@ -49,6 +49,11 @@ const timelineItems = [
     description:
       "Developed AI-powered delivery optimization system for India Post, reducing delivery times by 40%",
   },
+  {
+    "year": "2025 Feb",
+    "event": "GDGC Solution Challenge 2025 Winner",
+    "description": "Developed SportAI using RAG, ML, OpenCV and Flutter, enhancing athlete performance tracking by 50% and reducing injury risk by 30%."
+  },
 ];
 
 const Timeline = () => {
@@ -458,7 +463,6 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Progress bar with red, yellow, blue gradient */}
       <div
         className="fixed top-0 left-0 h-2 bg-gradient-to-r from-pink-500 via-yellow-400 via-blue-500 via-violet-600 to-pink-500 shadow-lg transition-transform duration-75 z-50"
         style={{ width: `${scrollProgress}%` }}
@@ -484,11 +488,9 @@ const Portfolio = () => {
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
           <div className="w-full text-center">
-            {/* Changed to a single inline element */}
             <p className="inline-flex items-center text-lg text-text">
               <Award className="w-8 h-8 text-yellow-400 animate-bounce pr-0" />
-              {/* No extra whitespace or margin */}
-              Top 2.4% among 13,000+ participants in SIH&apos;24
+              GDGC Solution Challenge 2025 Winner
             </p>
           </div>
         </div>
@@ -497,7 +499,6 @@ const Portfolio = () => {
         <div className="hidden md:block text-center space-y-12">
           <p className="text-2xl md:text-3xl text-text mb-2">
             {" "}
-            {/* Increased from text-2xl, reduced top margin */}
             Hey, I&apos;m{" "}
             <span className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-red-600 via-yellow-400 via-orange-500 via-red-500 to-red-600 bg-clip-text text-transparent bg-[size:200%_auto] animate-[flow_3s_linear_infinite]">
               Rishit Sura
@@ -505,21 +506,17 @@ const Portfolio = () => {
           </p>
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 md:mb-8 bg-primary bg-clip-text text-transparent">
             {" "}
-            {/* Increased from text-4xl */}
             Tech Enthusiast & Developer
           </h1>
           <p className="text-2xl text-text mb-10 max-w-3xl mx-auto">
             {" "}
-            {/* Increased from text-xl and max-w-2xl */}
             SIH&apos;24 Finalist | Python | Machine Learning | Full Stack
           </p>
           <div className="flex items-center justify-center gap-8">
             <Award className="w-10 h-10 text-yellow-400 animate-bounce" />{" "}
-            {/* Increased from w-8 h-8 */}
-            <p className="text-xl text-text">
-              Top 2.4% among 13,000+ participants in SIH&apos;24
+            <p className="text-2xl text-text">
+            GDGC Solution Challenge 2025 Winner
             </p>{" "}
-            {/* Increased from text-lg */}
           </div>
         </div>
       </section>
@@ -560,6 +557,10 @@ const Portfolio = () => {
                 <div className="p-4 font-mono text-sm">
                   <div className="text-green-500">$ whoami</div>
                   <div className="ml-2 text-text/90">tech_enthusiast <span className="text-primary">&lt;and&gt;</span> sih24_finalist ~</div>
+                  <div className="text-green-500 mt-2">$ awards</div>
+                  <div className="ml-2 text-text/90">
+                    <div>GDGC Solution Challenge 2025 Winner</div>
+                  </div>
                   <div className="text-green-500 mt-2">$ skills --list</div>
                   <div className="ml-2 text-text/90">
                     <div>→ Python, JavaScript, React</div>
