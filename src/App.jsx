@@ -58,6 +58,66 @@ const timelineItems = [
 
 const Timeline = () => {
   const renderedItems = useRef(new Set());
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const timelineRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      
+      const timelineRect = timelineRef.current.getBoundingClientRect();
+      const timelineTop = timelineRect.top;
+      const timelineHeight = timelineRect.height;
+      const windowHeight = window.innerHeight;
+      
+      const items = document.querySelectorAll('.timeline-item');
+      if (!items.length) return;
+      
+      if (timelineTop >= windowHeight) {
+        setScrollProgress(0);
+        setActiveIndex(-1);
+        return;
+      }
+      
+      if (timelineTop + timelineHeight <= 0) {
+        setScrollProgress(100);
+        setActiveIndex(items.length - 1);
+        return;
+      }
+
+      let maxVisibility = 0;
+      let mostVisibleIndex = -1;
+
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const itemTop = rect.top;
+        const itemHeight = rect.height;
+        
+        const visibleTop = Math.max(0, Math.min(windowHeight, itemTop));
+        const visibleBottom = Math.max(0, Math.min(windowHeight, itemTop + itemHeight));
+        const visibleHeight = visibleBottom - visibleTop;
+        
+        const visibilityRatio = visibleHeight / itemHeight;
+        
+        if (visibilityRatio > maxVisibility) {
+          maxVisibility = visibilityRatio;
+          mostVisibleIndex = index;
+        }
+      });
+
+      if (mostVisibleIndex !== -1) {
+        const progress = ((mostVisibleIndex + 1) / items.length) * 100;
+        setScrollProgress(progress);
+        setActiveIndex(mostVisibleIndex);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observers = [];
@@ -85,42 +145,108 @@ const Timeline = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto my-24 relative px-6 z-0">
+    <div className="max-w-4xl mx-auto my-24 relative px-6 z-0" ref={timelineRef}>
       <h2 className="text-4xl font-serif font-bold text-center mb-16 bg-primary bg-clip-text text-transparent">
         My Journey
       </h2>
 
-      <div className="absolute left-[50%] top-32 bottom-0 w-0.5 bg-primary/30" />
+      <div className="absolute md:left-1/2 left-[30px] top-32 bottom-0 w-0.5 bg-primary/10 shadow-[0_0_10px_rgba(69,135,233,0.1)]">
+        <div 
+          className="absolute top-0 w-full bg-primary transition-all duration-300 ease-out"
+          style={{ 
+            height: `${scrollProgress}%`,
+            boxShadow: '0 0 15px rgba(69, 135, 233, 0.6), 0 0 5px rgba(69, 135, 233, 0.4)'
+          }} 
+        />
+      </div>
 
       <div className="relative">
         {timelineItems.map((item, index) => (
           <div
             key={index}
-            className="timeline-item relative flex items-center gap-8 mb-16 
-              opacity-0 translate-y-10 transition-all duration-700 ease-out"
+            data-year={item.year.split(' ')[0]}
+            className={`timeline-item relative flex items-center gap-8 mb-16 
+              opacity-0 translate-y-10 transition-all duration-700 ease-out`}
           >
             <div
-              className={`w-1/2 ${
-                index % 2 === 0 ? "text-right pr-8" : "ml-auto pl-8"
-              }`}
+              className={`
+                md:w-1/2 w-full 
+                ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:ml-auto md:pl-8'}
+                pl-16 md:pl-0 
+              `}
             >
+              {/* Timeline card content */}
               <div
                 className="p-6 bg-secondary/80 backdrop-blur-sm rounded-lg shadow-xl 
-                              transition-transform duration-300 hover:scale-105 hover:bg-secondary/90 
-                              border border-primary/20 hover:border-primary/40"
+                          transition-transform duration-300 hover:scale-105 hover:bg-secondary/90 
+                          border border-primary/20 hover:border-primary/40"
               >
-                <div className="text-primary font-mono mb-2">{item.year}</div>
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 
+                              border border-primary/20 text-primary font-mono mb-3">
+                  {item.year}
+                </div>
+                
                 <h3 className="text-xl font-serif font-semibold mb-2 text-text">
                   {item.event}
                 </h3>
-                <p className="text-text text-sm">{item.description}</p>
+                
+                <div className="relative">
+                  <p className="text-text text-sm md:block">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50" />
+
+            <div className="absolute md:left-1/2 left-[30px] top-1/2 -translate-y-1/2">
+              <div className="relative flex items-center">
+                <div className="absolute -translate-x-[31px] md:-translate-x-1/2">
+                  <div className="relative w-4 h-4">
+                    <div 
+                      className={`absolute inset-0 rounded-full bg-primary/20 transition-all duration-300
+                        ${index <= activeIndex ? 'opacity-100 animate-ping' : 'opacity-0'}`}
+                    />
+                    <div 
+                      className={`absolute inset-0 rounded-full transition-all duration-300
+                        ${index <= activeIndex
+                          ? 'bg-primary scale-110 shadow-lg shadow-primary/50' 
+                          : 'bg-primary/30 scale-90'
+                        }`}
+                    />
+                  </div>
+                </div>
+                
+                <div className="absolute h-[2px] w-14 bg-primary/30 md:hidden" 
+                  style={{
+                    left: '-16px',
+                    top: '50%',
+                    transform: 'translateY(-50%)'
+                  }}
+                />
+              </div>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="md:hidden overflow-x-auto sticky top-0 bg-black/80 backdrop-blur-sm py-3 -mx-6 px-6 mb-8">
+        <div className="flex gap-4">
+          {[...new Set(timelineItems.map(item => item.year.split(' ')[0]))].map((year) => (
+            <button
+              key={year}
+              onClick={() => {
+                document.querySelector(`[data-year="${year}"]`)?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+              }}
+              className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-text 
+                        hover:bg-primary/20 transition-colors whitespace-nowrap"
+            >
+              {year}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -140,12 +266,11 @@ const ContactMe = () => {
 
   return (
     <section id="contact" className="py-32 px-6 relative overflow-hidden">
-      {/* Background Effect - Enhanced gradient */}
+
       <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-900/30 to-black opacity-70" />
 
       <div className="max-w-6xl mx-auto relative">
         <div className="flex flex-col md:flex-row gap-12 items-center">
-          {/* Left Column - Contact Info */}
           <div className="w-full md:w-1/2 space-y-8">
             <h2 className="text-4xl font-serif font-bold bg-primary bg-clip-text text-transparent">
               Let&apos;s Connect
@@ -253,7 +378,6 @@ const ContactMe = () => {
                       }}
                       placeholder="Enter your message..."
                     />
-                    {/* Add an absolute background layer */}
                     <div className="absolute inset-0 bg-black/50 rounded-lg -z-0" />
                   </div>
                 </div>
