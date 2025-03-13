@@ -50,9 +50,10 @@ const timelineItems = [
       "Developed AI-powered delivery optimization system for India Post, reducing delivery times by 40%",
   },
   {
-    "year": "2025 Feb",
-    "event": "GDGC Solution Challenge 2025 Winner",
-    "description": "Developed SportAI using RAG, ML, OpenCV and Flutter, enhancing athlete performance tracking by 50% and reducing injury risk by 30%."
+    year: "2025 Feb",
+    event: "GDGC Solution Challenge 2025 Winner",
+    description:
+      "Developed SportAI using RAG, ML, OpenCV and Flutter, enhancing athlete performance tracking by 50% and reducing injury risk by 30%.",
   },
 ];
 
@@ -65,21 +66,21 @@ const Timeline = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current) return;
-      
+
       const timelineRect = timelineRef.current.getBoundingClientRect();
       const timelineTop = timelineRect.top;
       const timelineHeight = timelineRect.height;
       const windowHeight = window.innerHeight;
-      
-      const items = document.querySelectorAll('.timeline-item');
+
+      const items = document.querySelectorAll(".timeline-item");
       if (!items.length) return;
-      
+
       if (timelineTop >= windowHeight) {
         setScrollProgress(0);
         setActiveIndex(-1);
         return;
       }
-      
+
       if (timelineTop + timelineHeight <= 0) {
         setScrollProgress(100);
         setActiveIndex(items.length - 1);
@@ -93,13 +94,16 @@ const Timeline = () => {
         const rect = item.getBoundingClientRect();
         const itemTop = rect.top;
         const itemHeight = rect.height;
-        
+
         const visibleTop = Math.max(0, Math.min(windowHeight, itemTop));
-        const visibleBottom = Math.max(0, Math.min(windowHeight, itemTop + itemHeight));
+        const visibleBottom = Math.max(
+          0,
+          Math.min(windowHeight, itemTop + itemHeight)
+        );
         const visibleHeight = visibleBottom - visibleTop;
-        
+
         const visibilityRatio = visibleHeight / itemHeight;
-        
+
         if (visibilityRatio > maxVisibility) {
           maxVisibility = visibilityRatio;
           mostVisibleIndex = index;
@@ -113,10 +117,10 @@ const Timeline = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -145,18 +149,22 @@ const Timeline = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto my-24 relative px-6 z-0" ref={timelineRef}>
+    <div
+      className="max-w-4xl mx-auto my-24 relative px-6 z-0"
+      ref={timelineRef}
+    >
       <h2 className="text-4xl font-serif font-bold text-center mb-16 bg-primary bg-clip-text text-transparent">
         My Journey
       </h2>
 
       <div className="absolute md:left-1/2 left-[30px] top-32 bottom-0 w-0.5 bg-primary/10 shadow-[0_0_10px_rgba(69,135,233,0.1)]">
-        <div 
+        <div
           className="absolute top-0 w-full bg-primary transition-all duration-300 ease-out"
-          style={{ 
+          style={{
             height: `${scrollProgress}%`,
-            boxShadow: '0 0 15px rgba(69, 135, 233, 0.6), 0 0 5px rgba(69, 135, 233, 0.4)'
-          }} 
+            boxShadow:
+              "0 0 15px rgba(69, 135, 233, 0.6), 0 0 5px rgba(69, 135, 233, 0.4)",
+          }}
         />
       </div>
 
@@ -164,14 +172,18 @@ const Timeline = () => {
         {timelineItems.map((item, index) => (
           <div
             key={index}
-            data-year={item.year.split(' ')[0]}
+            data-year={item.year.split(" ")[0]}
             className={`timeline-item relative flex items-center gap-8 mb-16 
               opacity-0 translate-y-10 transition-all duration-700 ease-out`}
           >
             <div
               className={`
                 md:w-1/2 w-full 
-                ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:ml-auto md:pl-8'}
+                ${
+                  index % 2 === 0
+                    ? "md:text-right md:pr-8"
+                    : "md:ml-auto md:pl-8"
+                }
                 pl-16 md:pl-0 
               `}
             >
@@ -181,15 +193,17 @@ const Timeline = () => {
                           transition-transform duration-300 hover:scale-105 hover:bg-secondary/90 
                           border border-primary/20 hover:border-primary/40"
               >
-                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 
-                              border border-primary/20 text-primary font-mono mb-3">
+                <div
+                  className="inline-block px-3 py-1 rounded-full bg-primary/10 
+                              border border-primary/20 text-primary font-mono mb-3"
+                >
                   {item.year}
                 </div>
-                
+
                 <h3 className="text-xl font-serif font-semibold mb-2 text-text">
                   {item.event}
                 </h3>
-                
+
                 <div className="relative">
                   <p className="text-text text-sm md:block">
                     {item.description}
@@ -202,25 +216,31 @@ const Timeline = () => {
               <div className="relative flex items-center">
                 <div className="absolute -translate-x-[31px] md:-translate-x-1/2">
                   <div className="relative w-4 h-4">
-                    <div 
+                    <div
                       className={`absolute inset-0 rounded-full bg-primary/20 transition-all duration-300
-                        ${index <= activeIndex ? 'opacity-100 animate-ping' : 'opacity-0'}`}
+                        ${
+                          index <= activeIndex
+                            ? "opacity-100 animate-ping"
+                            : "opacity-0"
+                        }`}
                     />
-                    <div 
+                    <div
                       className={`absolute inset-0 rounded-full transition-all duration-300
-                        ${index <= activeIndex
-                          ? 'bg-primary scale-110 shadow-lg shadow-primary/50' 
-                          : 'bg-primary/30 scale-90'
+                        ${
+                          index <= activeIndex
+                            ? "bg-primary scale-110 shadow-lg shadow-primary/50"
+                            : "bg-primary/30 scale-90"
                         }`}
                     />
                   </div>
                 </div>
-                
-                <div className="absolute h-[2px] w-14 bg-primary/30 md:hidden" 
+
+                <div
+                  className="absolute h-[2px] w-14 bg-primary/30 md:hidden"
                   style={{
-                    left: '-16px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
+                    left: "-16px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
                   }}
                 />
               </div>
@@ -231,14 +251,18 @@ const Timeline = () => {
 
       <div className="md:hidden overflow-x-auto sticky top-0 bg-black/80 backdrop-blur-sm py-3 -mx-6 px-6 mb-8">
         <div className="flex gap-4">
-          {[...new Set(timelineItems.map(item => item.year.split(' ')[0]))].map((year) => (
+          {[
+            ...new Set(timelineItems.map((item) => item.year.split(" ")[0])),
+          ].map((year) => (
             <button
               key={year}
               onClick={() => {
-                document.querySelector(`[data-year="${year}"]`)?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                });
+                document
+                  .querySelector(`[data-year="${year}"]`)
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
               }}
               className="px-3 py-1 text-sm rounded-full bg-secondary/50 text-text 
                         hover:bg-primary/20 transition-colors whitespace-nowrap"
@@ -266,7 +290,6 @@ const ContactMe = () => {
 
   return (
     <section id="contact" className="py-32 px-6 relative overflow-hidden">
-
       <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-900/30 to-black opacity-70" />
 
       <div className="max-w-6xl mx-auto relative">
@@ -441,17 +464,35 @@ const MobileNavItem = ({ href, icon, label }) => (
 MobileNavItem.propTypes = {
   href: PropTypes.string,
   icon: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 const MobileNavigation = () => (
-  <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-secondary/70 backdrop-blur-xl 
-                  border border-red-500 px-4 py-2 md:hidden z-50 rounded-full">
+  <nav
+    className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-secondary/70 backdrop-blur-xl 
+                  border border-red-500 px-4 py-2 md:hidden z-50 rounded-full"
+  >
     <div className="flex justify-around items-center gap-4">
-      <MobileNavItem href="#home" icon={<Home className="w-4 h-4" />} label="Home" />
-      <MobileNavItem href="#projects" icon={<Code2 className="w-4 h-4" />} label="Projects" />
-      <MobileNavItem href="#timeline" icon={<Clock className="w-4 h-4" />} label="Journey" />
-      <MobileNavItem href="#contact" icon={<Mail className="w-4 h-4" />} label="Contact" />
+      <MobileNavItem
+        href="#home"
+        icon={<Home className="w-4 h-4" />}
+        label="Home"
+      />
+      <MobileNavItem
+        href="#projects"
+        icon={<Code2 className="w-4 h-4" />}
+        label="Projects"
+      />
+      <MobileNavItem
+        href="#timeline"
+        icon={<Clock className="w-4 h-4" />}
+        label="Journey"
+      />
+      <MobileNavItem
+        href="#contact"
+        icon={<Mail className="w-4 h-4" />}
+        label="Contact"
+      />
     </div>
   </nav>
 );
@@ -561,10 +602,18 @@ const Portfolio = () => {
       <header className="hidden md:block">
         <div className="navbar-bg">
           <nav className="pill-navbar">
-            <a href="#home" className="pill-link hover:text-primary">Home</a>
-            <a href="#projects" className="pill-link hover:text-primary">Projects</a>
-            <a href="#timeline" className="pill-link hover:text-primary">Journey</a>
-            <a href="#contact" className="pill-link hover:text-primary">Contact</a>
+            <a href="#home" className="pill-link hover:text-primary">
+              Home
+            </a>
+            <a href="#projects" className="pill-link hover:text-primary">
+              Projects
+            </a>
+            <a href="#timeline" className="pill-link hover:text-primary">
+              Journey
+            </a>
+            <a href="#contact" className="pill-link hover:text-primary">
+              Contact
+            </a>
           </nav>
         </div>
       </header>
@@ -639,7 +688,7 @@ const Portfolio = () => {
           <div className="flex items-center justify-center gap-8">
             <Award className="w-10 h-10 text-yellow-400 animate-bounce" />{" "}
             <p className="text-2xl text-text">
-            GDGC Solution Challenge 2025 Winner
+              GDGC Solution Challenge 2025 Winner
             </p>{" "}
           </div>
         </div>
@@ -655,15 +704,16 @@ const Portfolio = () => {
                 About Me
               </h2>
               <p className="text-lg leading-relaxed text-text/90">
-                Hey! I&apos;m Rishit Sura, and I&apos;m driven by an endless curiosity to
-                explore and create. Whenever I come across something interesting
-                in tech, I dive right in - whether it&apos;s a fascinating article
-                about new AI developments or figuring out how an app works under
-                the hood. This passion for understanding and building things led
-                me straight into the world of technology. Now, as a Computer
-                Science student focused on AI/ML, I&apos;m not just learning to code
-                - I&apos;m bringing ideas to life through technology, turning my
-                &quot;what if?&quot; moments into &quot;why not?&quot; realities.
+                Hey! I&apos;m Rishit Sura, and I&apos;m driven by an endless
+                curiosity to explore and create. Whenever I come across
+                something interesting in tech, I dive right in - whether
+                it&apos;s a fascinating article about new AI developments or
+                figuring out how an app works under the hood. This passion for
+                understanding and building things led me straight into the world
+                of technology. Now, as a Computer Science student focused on
+                AI/ML, I&apos;m not just learning to code - I&apos;m bringing
+                ideas to life through technology, turning my &quot;what
+                if?&quot; moments into &quot;why not?&quot; realities.
               </p>
             </div>
 
@@ -680,7 +730,11 @@ const Portfolio = () => {
                 </div>
                 <div className="p-4 font-mono text-sm">
                   <div className="text-green-500">$ whoami</div>
-                  <div className="ml-2 text-text/90">tech_enthusiast <span className="text-primary">&lt;and&gt;</span> sih24_finalist ~</div>
+                  <div className="ml-2 text-text/90">
+                    tech_enthusiast{" "}
+                    <span className="text-primary">&lt;and&gt;</span>{" "}
+                    sih24_finalist ~
+                  </div>
                   <div className="text-green-500 mt-2">$ awards</div>
                   <div className="ml-2 text-text/90">
                     <div>GDGC Solution Challenge 2025 Winner</div>
@@ -719,11 +773,50 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6 relative">
         <div className="max-w-6xl mx-auto space-y-16">
-          <h2 className="text-4xl font-serif font-bold text-center bg-primary bg-clip-text text-transparent">
-            {" "}
-            {/* Reverted gradient classes */}
-            Featured Projects
-          </h2>
+          <div className="space-y-4">
+            <h2 className="text-4xl font-serif font-bold text-center bg-primary bg-clip-text text-transparent">
+              {" "}
+              Featured Projects
+            </h2>
+            <div className="flex justify-center">
+              <a
+                href="https://github.com/rishitsura"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm group"
+              >
+                <span className="md:hidden relative text-text/80 border-b border-primary/40 pb-[1px]">
+                  View all my projects
+                </span>
+                <span className="hidden md:inline-block relative text-text/80 group-hover:text-primary transition-all duration-500 ease-in-out">
+                  View all my projects
+                  <span className="absolute left-0 -bottom-[2px] w-full h-[1px]">
+                    <span
+                      className="absolute left-0 top-0 w-0 h-full bg-primary 
+                                group-hover:w-full transition-all duration-700 ease-out"
+                    ></span>
+                  </span>
+                </span>
+
+                {/* Arrow icon */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transform translate-x-0 group-hover:translate-x-1 transition-transform duration-500 ease-in-out"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} />
