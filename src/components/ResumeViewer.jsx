@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const ResumeViewer = ({ onClose }) => {
-  const resumePath = '/Sura Rishit_Resume.pdf';
+  const resumePath = '/Rishit Sura_Resume.pdf';
   const [isLoading, setIsLoading] = useState(true);
 
   return (
